@@ -18,7 +18,7 @@ This is a Splunk Modular Alert for posting alerts to a Yammer group.  Splunk pos
 
 You will need to register a [client application](https://www.yammer.com/client_applications) with Yammer.  
 
-Then sign authorise the user.  To do this, I went to the [Yammer Developer Portal](https://developer.yammer.com/docs/messagesjson) and clicked "Try It" on the GET messages API call.  This forces you to log into Yammer via OAuth2.  You can then take the token and paste it into the setup screen
+Then sign authorise the user.  To do this, I went to the [Yammer Developer Portal](https://developer.yammer.com/docs/messagesjson) and clicked "Try It" on the GET messages API call.  This forces you to log into Yammer via OAuth2.  You can then take the token and paste it into the setup screen.  This is horrible and there is [GitHub issue #1](https://github.com/oxo42/SplunkYammerAlert/issues/1) open.
 
 To enter these values in Splunk, just browse to Settings -> Alert Actions -> Yammer Alerts -> Setup Yammer Alerting
 
