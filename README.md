@@ -1,0 +1,2 @@
+# SplunkYammerAlert
+Yammer Alert Action
