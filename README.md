@@ -2,25 +2,51 @@
 
 ## Overview
 
-This is a Splunk Modular Alert for posting alerts to a Yammer group.  Splunk posts to Yammer as a user.  There is no _bot_ support so you will need to setup a dedicated user for alerts.
+This is a Splunk Modular Alert for posting alerts to a Yammer group.
 
 ## Dependencies
 
 * Splunk 6.3+
 * Supported on Windows, Linux, MacOS, Solaris, FreeBSD, HP-UX, AIX
+* Active Office 365 Yammer subscription
 
 ## Setup
 
-* Untar the release to your `$SPLUNK_HOME/etc/apps` directory
+* Download the release
+* `$SPLUNK_HOME/bin/splunk install yammer_alerts.spl -update 1`
 * Restart Splunk
 
-## Configuration
+## Office 365 Setup
 
-You will need to register a [client application](https://www.yammer.com/client_applications) with Yammer.  
+* Create a user for Splunk to send as the alerts
+* Ensure that user can post to all the groups that you want
 
-Then sign authorise the user.  To do this, I went to the [Yammer Developer Portal](https://developer.yammer.com/docs/messagesjson) and clicked "Try It" on the GET messages API call.  This forces you to log into Yammer via OAuth2.  You can then take the token and paste it into the setup screen.  This is horrible and there is [GitHub issue #1](https://github.com/oxo42/SplunkYammerAlert/issues/1) open.
+## Yammer Auth token
 
-To enter these values in Splunk, just browse to Settings -> Alert Actions -> Yammer Alerts -> Setup Yammer Alerting
+_I am pretty sure this is the wrong way to do things.  I don't know how to control OAuth2 from within Splunk.  There is an [issue on
+GitHub](https://github.com/oxo42/SplunkYammerAlert/issues/1) to fix this._
+
+### Yammer
+
+1. Visit the  [Yammer Developer Portal](https://developer.yammer.com/docs/messagesjson)
+2. Try one of the sample APIs
+     * This forces you to log into Yammer via OAuth2 and exposes the token.
+3. Click on the icon of the key and copy it
+
+
+### Splunk GUI
+
+1. Settings -> Alert Actions -> Yammer Alerts -> Setup Yammer Alerting
+2. Paste the token into the text box
+
+### Splunk Config File
+
+Edit or create the file `$SPLUNK_HOME/etc/apps/yammer_alerts/local/alert_actions.conf`
+
+```ini
+[yammer]
+param.token = <token from yammer.com>
+```
 
 ## Using
 
@@ -36,7 +62,9 @@ Browse to: Settings -> Alert Actions -> Yammer Alerts -> View Log Events
 
 Or you can search directly in Splunk
 
-    index=_internal sourcetype=splunkd component=sendmodalert action="twilio"
+```
+index=_internal sourcetype=splunkd component=sendmodalert action="yammer"
+```
 
 ## Troubleshooting
 
