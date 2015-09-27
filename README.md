@@ -23,8 +23,7 @@ This is a Splunk Modular Alert for posting alerts to a Yammer group.
 
 ## Yammer Auth token
 
-_I am pretty sure this is the wrong way to do things.  I don't know how to control OAuth2 from within Splunk.  There is an [issue on
-GitHub](https://github.com/oxo42/SplunkYammerAlert/issues/1) to fix this._
+_I am pretty sure this is the wrong way to do things.  I don't know how to control OAuth2 from within Splunk.  There is an [issue on GitHub](https://github.com/oxo42/SplunkYammerAlert/issues/1) to fix this._
 
 ### Yammer
 
