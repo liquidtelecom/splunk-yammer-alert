@@ -27,16 +27,26 @@ _I am pretty sure this is the wrong way to do things.  I don't know how to contr
 
 ### Yammer
 
-1. Visit the  [Yammer Developer Portal](https://developer.yammer.com/docs/messagesjson)
-2. Try one of the sample APIs
-     * This forces you to log into Yammer via OAuth2 and exposes the token.
-3. Click on the icon of the key and copy it
+Because I haven't yet created a proper auth process in Splunk, you'll have to work around it.  We'll create a client application then manually go through the process of getting a `code` then the `token`.  These instructions are taken from the [Yammer Dev Docs - Test Token](https://developer.yammer.com/docs/test-token)
 
+1. Create a [Yammer Client Application](https://www.yammer.com/client_applications)
+  * Set the `Redirect URI` to https://www.yammer.com/
+2. Make a note of the `Client ID` and `Client Secret`
+3. Paste this URL into your browser where the `client_id` is the value obtained above
+```
+https://www.yammer.com/oauth2/authorize?client_id=[client_id]&redirect_uri=https://www.yammer.com/
+```
+4. Copy the `code` parameter from the URL created
+5. Paste this URL into your browser, where `client_id`, `client_secret` are obtained in step 3 above and the `code` comes from step 4
+```
+https://www.yammer.com/oauth2/access_token.json?client_id=[client_id]&client_secret=[client_secret]&code=[code]
+```
+6. From the JSON object returned, copy the `token` field
 
 ### Splunk GUI
 
 1. Settings -> Alert Actions -> Yammer Alerts -> Setup Yammer Alerting
-2. Paste the token into the text box
+2. Paste the token from step 6 above into the text box
 
 ### Splunk Config File
 

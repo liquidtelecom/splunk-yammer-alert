@@ -5,11 +5,11 @@
 
     <block title="Server" endpoint="admin/alert_actions" entity="yammer">
         <input field="param.token">
-            <label>Yammer Authentication Toekn</label>
+            <label>Yammer Authentication Token</label>
             <type>text</type>
         </input>
         <text><![CDATA[
-          In order to create the token you have to log into Yammer with a user account. 
+          In order to create the token you have to log into Yammer with a user account.
           See <a href="https://developer.yammer.com/docs/oauth-2">Yammer authentication docs</a> for details.
         ]]></text>
     </block>
